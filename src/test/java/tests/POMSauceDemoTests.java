@@ -1,5 +1,6 @@
 package tests;
 
+import pages.SauceDemoInventoryPage;
 import pages.SauceDemoLoginPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -79,5 +80,35 @@ public class POMSauceDemoTests {
         Assertions.assertEquals("Products", pageTitle);
 
         driver.quit();
+    }
+
+    @Test
+    public void test5() {
+        // Step 1: Login to SauceDemo
+        SauceDemoLoginPage loginPage = new SauceDemoLoginPage(driver);
+        loginPage.openSauceDemoPage();
+        loginPage.sendTextToUsername("standard_user");
+        loginPage.sendTextToPassword("secret_sauce");
+        loginPage.clickLoginButton();
+
+        // Wait for the inventory page to load
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='title']")));
+
+        // Step 2: Add item to cart
+        SauceDemoInventoryPage inventoryPage = new SauceDemoInventoryPage(driver);
+        inventoryPage.addFirstItemToCart();
+
+        // Step 3: Verify item is in cart by checking cart badge count
+        String cartCount = inventoryPage.getCartBadgeCount();
+        Assertions.assertEquals("1", cartCount, "Cart should contain 1 product");
+
+        // Step 4: Go to cart
+        inventoryPage.goToCart();
+
+        // Wait for cart page to load
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='cart_item']")));
+
+
     }
 }
