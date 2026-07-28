@@ -34,4 +34,19 @@ public class POMSauceDemoTests {
         driver.quit();
     }
 
+    // Test Case 2: Verify error message when password field is empty
+    @Test
+    public void test2() {
+        SauceDemoLoginPage loginPage = new SauceDemoLoginPage(driver);
+        loginPage.openSauceDemoPage();
+        loginPage.sendTextToUsername("standard_user");
+        loginPage.sendTextToPassword("");
+        loginPage.clickLoginButton();
+
+        String result = driver.findElement(By.xpath("//h3[@data-test='error']")).getText();
+        Assertions.assertEquals("Epic sadface: Password is required", result);
+
+        driver.quit();
+    }
+
 }
