@@ -49,4 +49,19 @@ public class POMSauceDemoTests {
         driver.quit();
     }
 
+    // Test Case 3: Verify error message when valid username is used with wrong password
+    @Test
+    public void test3() {
+        SauceDemoLoginPage loginPage = new SauceDemoLoginPage(driver);
+        loginPage.openSauceDemoPage();
+        loginPage.sendTextToUsername("standard_user");
+        loginPage.sendTextToPassword("wrongpassword");
+        loginPage.clickLoginButton();
+
+        String result = driver.findElement(By.xpath("//h3[@data-test='error']")).getText();
+        Assertions.assertEquals("Epic sadface: Username and password do not match any user in this service", result);
+
+        driver.quit();
+    }
+
 }
