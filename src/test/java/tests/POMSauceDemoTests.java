@@ -1,5 +1,6 @@
 package tests;
 
+import pages.SauceDemoCartPage;
 import pages.SauceDemoInventoryPage;
 import pages.SauceDemoLoginPage;
 import org.junit.jupiter.api.Assertions;
@@ -101,7 +102,7 @@ public class POMSauceDemoTests {
 
         // Step 3: Verify item is in cart by checking cart badge count
         String cartCount = inventoryPage.getCartBadgeCount();
-        Assertions.assertEquals("1", cartCount, "Cart should contain 1 product");
+        Assertions.assertEquals("1", cartCount, "Cart should contain 1 item");
 
         // Step 4: Go to cart
         inventoryPage.goToCart();
@@ -109,6 +110,18 @@ public class POMSauceDemoTests {
         // Wait for cart page to load
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='cart_item']")));
 
+        // Verify item is in cart
+        SauceDemoCartPage cartPage = new SauceDemoCartPage(driver);
+        int itemCount = cartPage.getCartItemCount();
+        Assertions.assertEquals(1, itemCount, "Cart should contain 1 item");
 
+        // Step 5: Remove item from cart
+        cartPage.removeItemFromCart();
+
+        // Step 6: Verify cart is empty
+        boolean isEmpty = cartPage.isCartEmpty();
+        Assertions.assertTrue(isEmpty, "Cart should be empty after removing the item");
+
+        driver.quit();
     }
 }

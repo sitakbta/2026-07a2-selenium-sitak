@@ -7,17 +7,17 @@ public class SauceDemoInventoryPage {
     WebDriver driver;
 
     // Locators for inventory page
-    By productAddButtonLocator = By.xpath("(//button[contains(text(), 'Add to cart')])[2]");
+    By itemAddButtonLocator = By.xpath("(//button[contains(text(), 'Add to cart')])[2]");
     By cartBadgeLocator = By.xpath("//span[@class='shopping_cart_badge']");
     By cartLinkLocator = By.xpath("//a[@class='shopping_cart_link']");
-    By productRemoveButtonLocator = By.xpath("(//button[contains(text(), 'Remove')])[2]");
+    By itemRemoveButtonLocator = By.xpath("(//button[contains(text(), 'Remove')])[2]");
 
     public SauceDemoInventoryPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void addFirstItemToCart() {
-        driver.findElement(productAddButtonLocator).click();
+        driver.findElement(itemAddButtonLocator).click();
     }
 
     public String getCartBadgeCount() {
@@ -29,7 +29,7 @@ public class SauceDemoInventoryPage {
     }
 
     public void removeFirstItemFromCart() {
-        driver.findElement(productRemoveButtonLocator).click();
+        driver.findElement(itemRemoveButtonLocator).click();
     }
 
     public boolean isCartBadgeVisible() {
