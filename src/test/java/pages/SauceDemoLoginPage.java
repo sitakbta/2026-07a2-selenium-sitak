@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class SauceDemoLoginPage {
     WebDriver driver;
 
+    // Locators for login page
     By usernameLocator = By.id("user-name");
     By passwordLocator = By.id("password");
     By loginButtonLocator = By.id("login-button");
