@@ -31,14 +31,4 @@ public class SauceDemoInventoryPage {
     public void removeFirstItemFromCart() {
         driver.findElement(itemRemoveButtonLocator).click();
     }
-
-    public boolean isCartBadgeVisible() {
-        try {
-            driver.findElement(cartBadgeLocator);
-            return true;
-        }
-        catch (Exception e) {
-            return false;
-        }
-    }
 }
