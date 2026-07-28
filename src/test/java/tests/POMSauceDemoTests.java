@@ -122,6 +122,6 @@ public class POMSauceDemoTests {
         boolean isEmpty = cartPage.isCartEmpty();
         Assertions.assertTrue(isEmpty, "Cart should be empty after removing the item");
 
-        driver.quit();
+        //driver.quit();
     }
 }

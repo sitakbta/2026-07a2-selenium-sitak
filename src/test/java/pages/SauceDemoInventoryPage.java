@@ -10,7 +10,6 @@ public class SauceDemoInventoryPage {
     By itemAddButtonLocator = By.xpath("(//button[contains(text(), 'Add to cart')])[2]");
     By cartBadgeLocator = By.xpath("//span[@class='shopping_cart_badge']");
     By cartLinkLocator = By.xpath("//a[@class='shopping_cart_link']");
-    By itemRemoveButtonLocator = By.xpath("(//button[contains(text(), 'Remove')])[2]");
 
     public SauceDemoInventoryPage(WebDriver driver) {
         this.driver = driver;
@@ -26,9 +25,5 @@ public class SauceDemoInventoryPage {
 
     public void goToCart() {
         driver.findElement(cartLinkLocator).click();
-    }
-
-    public void removeFirstItemFromCart() {
-        driver.findElement(itemRemoveButtonLocator).click();
     }
 }
