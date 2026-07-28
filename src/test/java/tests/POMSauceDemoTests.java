@@ -64,4 +64,20 @@ public class POMSauceDemoTests {
         driver.quit();
     }
 
+    // Test Case 4: Verify successful login with valid username and correct password (secret_sauce)
+    @Test
+    public void test4() {
+        SauceDemoLoginPage loginPage = new SauceDemoLoginPage(driver);
+        loginPage.openSauceDemoPage();
+        loginPage.sendTextToUsername("standard_user");
+        loginPage.sendTextToPassword("secret_sauce");
+        loginPage.clickLoginButton();
+
+        // Wait for the inventory page to load and verify the "Products" page title is displayed
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        String pageTitle = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='title']"))).getText();
+        Assertions.assertEquals("Products", pageTitle);
+
+        driver.quit();
+    }
 }
