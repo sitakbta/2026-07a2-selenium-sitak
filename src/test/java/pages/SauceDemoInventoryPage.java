@@ -12,7 +12,7 @@ public class SauceDemoInventoryPage {
     By cartLinkLocator = By.xpath("//a[@class='shopping_cart_link']");
 
     public SauceDemoInventoryPage(WebDriver driver) {
-        this.driver = driver;
+       this.driver = driver;
     }
 
     public void addFirstItemToCart() {
