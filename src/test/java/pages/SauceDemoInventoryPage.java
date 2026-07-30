@@ -15,7 +15,7 @@ public class SauceDemoInventoryPage {
        this.driver = driver;
     }
 
-    public void addFirstItemToCart() {
+    public void addItemToCart() {
         driver.findElement(itemAddButtonLocator).click();
     }
 

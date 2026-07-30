@@ -108,7 +108,7 @@ mvn test -X
 - **Objective:** Verify full shopping cart workflow (add → verify → remove → verify empty)
 - **Steps:**
   1. Login with valid credentials (standard_user / secret_sauce)
-  2. Add first item to cart
+  2. Add an item to cart by defining [1]/[2]/13]/[4]/[5]/[6]
   3. Verify item count in cart badge (should be 1)
   4. Navigate to cart page
   5. Verify item is present in cart

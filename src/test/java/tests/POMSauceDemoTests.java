@@ -98,7 +98,7 @@ public class POMSauceDemoTests {
 
         // Step 2: Add item to cart
         SauceDemoInventoryPage inventoryPage = new SauceDemoInventoryPage(driver);
-        inventoryPage.addFirstItemToCart();
+        inventoryPage.addItemToCart();
 
         // Step 3: Verify item is in cart by checking cart badge count
         String cartCount = inventoryPage.getCartBadgeCount();
