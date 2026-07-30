@@ -7,7 +7,7 @@ public class SauceDemoInventoryPage {
     WebDriver driver;
 
     // Locators for inventory page
-    By itemAddButtonLocator = By.xpath("(//button[contains(text(), 'Add to cart')])[2]");
+    By itemAddButtonLocator = By.xpath("(//button[contains(text(), 'Add to cart')])[1]");
     By cartBadgeLocator = By.xpath("//span[@class='shopping_cart_badge']");
     By cartLinkLocator = By.xpath("//a[@class='shopping_cart_link']");
 
