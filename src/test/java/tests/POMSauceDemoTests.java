@@ -3,7 +3,6 @@ package tests;
 import pages.SauceDemoCartPage;
 import pages.SauceDemoInventoryPage;
 import pages.SauceDemoLoginPage;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,6 +12,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class POMSauceDemoTests {
     WebDriver driver;
@@ -31,7 +33,7 @@ public class POMSauceDemoTests {
         loginPage.clickLoginButton();
 
         String result = driver.findElement(By.xpath("//h3[@data-test='error']")).getText();
-        Assertions.assertEquals("Epic sadface: Username is required", result);
+        assertEquals("Epic sadface: Username is required", result);
 
         driver.quit();
     }
@@ -46,7 +48,7 @@ public class POMSauceDemoTests {
         loginPage.clickLoginButton();
 
         String result = driver.findElement(By.xpath("//h3[@data-test='error']")).getText();
-        Assertions.assertEquals("Epic sadface: Password is required", result);
+        assertEquals("Epic sadface: Password is required", result);
 
         driver.quit();
     }
@@ -61,7 +63,7 @@ public class POMSauceDemoTests {
         loginPage.clickLoginButton();
 
         String result = driver.findElement(By.xpath("//h3[@data-test='error']")).getText();
-        Assertions.assertEquals("Epic sadface: Username and password do not match any user in this service", result);
+        assertEquals("Epic sadface: Username and password do not match any user in this service", result);
 
         driver.quit();
     }
@@ -78,7 +80,7 @@ public class POMSauceDemoTests {
         // Wait for the inventory page to load and verify the "Products" page title is displayed
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         String pageTitle = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='title']"))).getText();
-        Assertions.assertEquals("Products", pageTitle);
+        assertEquals("Products", pageTitle);
 
         driver.quit();
     }
@@ -102,7 +104,7 @@ public class POMSauceDemoTests {
 
         // Step 3: Verify item is in cart by checking cart badge count
         String cartCount = inventoryPage.getCartBadgeCount();
-        Assertions.assertEquals("1", cartCount, "Cart should contain 1 item");
+        assertEquals("Cart should contain 1 item","1",  cartCount);
 
         // Step 4: Go to cart
         inventoryPage.goToCart();
@@ -113,14 +115,14 @@ public class POMSauceDemoTests {
         // Verify item is in cart
         SauceDemoCartPage cartPage = new SauceDemoCartPage(driver);
         int itemCount = cartPage.getCartItemCount();
-        Assertions.assertEquals(1, itemCount, "Cart should contain 1 item");
+        assertEquals("Cart should contain 1 item",1,  itemCount);
 
         // Step 5: Remove item from cart
         cartPage.removeItemFromCart();
 
         // Step 6: Verify cart is empty
         boolean isEmpty = cartPage.isCartEmpty();
-        Assertions.assertTrue(isEmpty, "Cart should be empty after removing the item");
+        assertTrue("Cart should be empty after removing the item", isEmpty);
 
         driver.quit();
     }
