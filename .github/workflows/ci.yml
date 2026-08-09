@@ -28,5 +28,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Install Firefox and geckodriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y firefox firefox-geckodriver
+
       - name: Build and run tests
         run: mvn -B test
